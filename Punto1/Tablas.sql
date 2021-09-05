@@ -26,17 +26,12 @@ valor_unitario NUMBER(20) NOT NULL,
 codfact NUMBER(20) NOT NULL REFERENCES factura
 );
 
+--CREATE INDEX faccedidx ON factura(cecliente);
+--CREATE INDEX detfacidx ON detalle(codfact);
+
 BEGIN
-    datos_punto_uno(100, 1000, 5000);
+    datos_punto_uno(10000, 80000, 240000);
 END;
 /
 
-SELECT value AS ruta_d
-FROM v$parameter
-WHERE name = 'user_dump_dest';
-
-SELECT spid FROM sys.v_$process
-WHERE addr = (SELECT paddr FROM sys.v_$session
-                WHERE audsid = USERENV('sessionid')
-);
 

@@ -30,8 +30,9 @@ codfact NUMBER(20) NOT NULL REFERENCES factura
 --CREATE INDEX detfacidx ON detalle(codfact);
 
 BEGIN
-    datos_punto_uno(10000, 80000, 240000);
+    datos_punto_uno(15000, 100000, 480000);
 END;
 /
 
-
+ALTER SYSTEM flush buffer_cache;
+ALTER SYSTEM flush shared_pool;

@@ -1,9 +1,9 @@
 
-TKPROF: Release 11.2.0.2.0 - Development on Dom Sep 5 01:17:13 2021
+TKPROF: Release 11.2.0.2.0 - Development on Dom Sep 5 10:48:46 2021
 
 Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
 
-Trace file: xe_ora_17152.trc
+Trace file: C:\oraclexe\app\oracle\diag\rdbms\xe\xe\trace\xe_ora_13000.trc
 Sort options: default
 
 ********************************************************************************
@@ -22,11 +22,11 @@ WHERE c.cedula = f.cecliente AND f.codigof = d.codfact
 
 call     count       cpu    elapsed       disk      query    current        rows
 ------- ------  -------- ---------- ---------- ---------- ----------  ----------
-Parse        1      0.01       0.01          9          9          0           0
+Parse        1      0.00       0.01          9          9          0           0
 Execute      1      0.00       0.00          0          0          0           0
-Fetch    16001      1.06       1.54        693      17217          0      240000
+Fetch     3335      0.14       0.26         51       3561          0       50000
 ------- ------  -------- ---------- ---------- ---------- ----------  ----------
-total    16003      1.07       1.56        702      17226          0      240000
+total     3337      0.14       0.27         60       3570          0       50000
 
 Misses in library cache during parse: 1
 Optimizer mode: ALL_ROWS
@@ -35,11 +35,11 @@ Number of plan statistics captured: 1
 
 Rows (1st) Rows (avg) Rows (max)  Row Source Operation
 ---------- ---------- ----------  ---------------------------------------------------
-    240000     240000     240000  HASH JOIN  (cr=17217 pr=693 pw=0 time=1029213 us cost=1520 size=46291392 card=260064)
-     10000      10000      10000   TABLE ACCESS FULL CLIENTE (cr=55 pr=0 pw=0 time=1053 us cost=16 size=780000 card=10000)
-    240000     240000     240000   HASH JOIN  (cr=17162 pr=693 pw=0 time=767081 us cost=1503 size=26006400 card=260064)
-     80000      80000      80000    TABLE ACCESS FULL FACTURA (cr=246 pr=38 pw=0 time=7063 us cost=68 size=3520545 card=100587)
-    240000     240000     240000    TABLE ACCESS FULL DETALLE (cr=16916 pr=655 pw=0 time=461334 us cost=262 size=16904095 card=260063)
+     50000      50000      50000  HASH JOIN  (cr=3561 pr=51 pw=0 time=139288 us cost=68 size=7515516 card=42222)
+      1000       1000       1000   TABLE ACCESS FULL CLIENTE (cr=7 pr=0 pw=0 time=152 us cost=3 size=78000 card=1000)
+     50000      50000      50000   HASH JOIN  (cr=3554 pr=51 pw=0 time=101711 us cost=64 size=4222200 card=42222)
+     10000      10000      10000    TABLE ACCESS FULL FACTURA (cr=34 pr=0 pw=0 time=1406 us cost=10 size=350000 card=10000)
+     50000      50000      50000    TABLE ACCESS FULL DETALLE (cr=3520 pr=51 pw=0 time=59545 us cost=53 size=2744430 card=42222)
 
 ********************************************************************************
 
@@ -49,11 +49,11 @@ WHERE c.cedula = f.cecliente AND f.codigof = d.codfact
 
 call     count       cpu    elapsed       disk      query    current        rows
 ------- ------  -------- ---------- ---------- ---------- ----------  ----------
-Parse        1      0.01       0.01          9          9          0           0
+Parse        1      0.00       0.01          9          9          0           0
 Execute      1      0.00       0.00          0          0          0           0
-Fetch    16001      1.09       1.23        693      17217          0      240000
+Fetch     3335      0.21       0.21         51       3561          0       50000
 ------- ------  -------- ---------- ---------- ---------- ----------  ----------
-total    16003      1.10       1.25        702      17226          0      240000
+total     3337      0.21       0.22         60       3570          0       50000
 
 Misses in library cache during parse: 1
 Optimizer mode: ALL_ROWS
@@ -62,11 +62,11 @@ Number of plan statistics captured: 1
 
 Rows (1st) Rows (avg) Rows (max)  Row Source Operation
 ---------- ---------- ----------  ---------------------------------------------------
-    240000     240000     240000  HASH JOIN  (cr=17217 pr=693 pw=0 time=866068 us cost=1520 size=46291392 card=260064)
-     10000      10000      10000   TABLE ACCESS FULL CLIENTE (cr=55 pr=0 pw=0 time=269 us cost=16 size=780000 card=10000)
-    240000     240000     240000   HASH JOIN  (cr=17162 pr=693 pw=0 time=628627 us cost=1503 size=26006400 card=260064)
-     80000      80000      80000    TABLE ACCESS FULL FACTURA (cr=246 pr=38 pw=0 time=5875 us cost=68 size=3520545 card=100587)
-    240000     240000     240000    TABLE ACCESS FULL DETALLE (cr=16916 pr=655 pw=0 time=350309 us cost=262 size=16904095 card=260063)
+     50000      50000      50000  HASH JOIN  (cr=3561 pr=51 pw=0 time=125106 us cost=68 size=7515516 card=42222)
+      1000       1000       1000   TABLE ACCESS FULL CLIENTE (cr=7 pr=0 pw=0 time=146 us cost=3 size=78000 card=1000)
+     50000      50000      50000   HASH JOIN  (cr=3554 pr=51 pw=0 time=87345 us cost=64 size=4222200 card=42222)
+     10000      10000      10000    TABLE ACCESS FULL FACTURA (cr=34 pr=0 pw=0 time=518 us cost=10 size=350000 card=10000)
+     50000      50000      50000    TABLE ACCESS FULL DETALLE (cr=3520 pr=51 pw=0 time=50607 us cost=53 size=2744430 card=42222)
 
 ********************************************************************************
 
@@ -76,11 +76,11 @@ WHERE c.cedula = f.cecliente AND f.codigof = d.codfact
 
 call     count       cpu    elapsed       disk      query    current        rows
 ------- ------  -------- ---------- ---------- ---------- ----------  ----------
-Parse        1      0.01       0.01          0          0          0           0
+Parse        1      0.00       0.01          9          9          0           0
 Execute      1      0.00       0.00          0          0          0           0
-Fetch    16001      0.81       1.12       1268       1273          0      240000
+Fetch     3335      0.12       0.16         51        237          0       50000
 ------- ------  -------- ---------- ---------- ---------- ----------  ----------
-total    16003      0.82       1.13       1268       1273          0      240000
+total     3337      0.12       0.18         60        246          0       50000
 
 Misses in library cache during parse: 1
 Optimizer mode: ALL_ROWS
@@ -89,15 +89,15 @@ Number of plan statistics captured: 1
 
 Rows (1st) Rows (avg) Rows (max)  Row Source Operation
 ---------- ---------- ----------  ---------------------------------------------------
-    240000     240000     240000  MERGE JOIN  (cr=1273 pr=1268 pw=0 time=806026 us cost=3484 size=17280000 card=240000)
-     80000      80000      80000   SORT JOIN (cr=314 pr=312 pw=0 time=198242 us cost=1537 size=3840000 card=80000)
-     80000      80000      80000    MERGE JOIN  (cr=314 pr=312 pw=0 time=70167 us cost=580 size=3840000 card=80000)
-     10000      10000      10000     TABLE ACCESS BY INDEX ROWID CLIENTE (cr=69 pr=69 pw=0 time=30237 us cost=69 size=310000 card=10000)
-     10000      10000      10000      INDEX FULL SCAN SYS_C007872 (cr=19 pr=19 pw=0 time=2621 us cost=19 size=0 card=10000)(object id 26814)
-     80000      80000      80000     SORT JOIN (cr=245 pr=243 pw=0 time=47080 us cost=511 size=1360000 card=80000)
-     80000      80000      80000      TABLE ACCESS FULL FACTURA (cr=245 pr=243 pw=0 time=7028 us cost=67 size=1360000 card=80000)
-    240000     240000     240000   SORT JOIN (cr=959 pr=956 pw=0 time=361206 us cost=1947 size=5760000 card=240000)
-    240000     240000     240000    TABLE ACCESS FULL DETALLE (cr=959 pr=956 pw=0 time=19047 us cost=262 size=5760000 card=240000)
+     50000      50000      50000  MERGE JOIN  (cr=237 pr=51 pw=0 time=116256 us cost=1078 size=7515516 card=42222)
+     10000      10000      10000   SORT JOIN (cr=41 pr=0 pw=0 time=19803 us cost=369 size=1130000 card=10000)
+     10000      10000      10000    MERGE JOIN  (cr=41 pr=0 pw=0 time=9921 us cost=109 size=1130000 card=10000)
+      1000       1000       1000     SORT JOIN (cr=7 pr=0 pw=0 time=567 us cost=4 size=78000 card=1000)
+      1000       1000       1000      TABLE ACCESS FULL CLIENTE (cr=7 pr=0 pw=0 time=151 us cost=3 size=78000 card=1000)
+     10000      10000      10000     SORT JOIN (cr=34 pr=0 pw=0 time=6280 us cost=105 size=350000 card=10000)
+     10000      10000      10000      TABLE ACCESS FULL FACTURA (cr=34 pr=0 pw=0 time=391 us cost=10 size=350000 card=10000)
+     50000      50000      50000   SORT JOIN (cr=196 pr=51 pw=0 time=58657 us cost=709 size=2744430 card=42222)
+     50000      50000      50000    TABLE ACCESS FULL DETALLE (cr=196 pr=51 pw=0 time=6633 us cost=53 size=2744430 card=42222)
 
 ********************************************************************************
 
@@ -107,11 +107,11 @@ WHERE c.cedula = f.cecliente AND f.codigof = d.codfact
 
 call     count       cpu    elapsed       disk      query    current        rows
 ------- ------  -------- ---------- ---------- ---------- ----------  ----------
-Parse        1      0.00       0.00          0          8          0           0
+Parse        1      0.00       0.01          8         10          0           0
 Execute      1      0.00       0.00          0          0          0           0
-Fetch    16001      2.51       2.53          0     468914          0      240000
+Fetch     3335      0.32       0.55        215      80833          0       50000
 ------- ------  -------- ---------- ---------- ---------- ----------  ----------
-total    16003      2.51       2.54          0     468922          0      240000
+total     3337      0.32       0.56        223      80843          0       50000
 
 Misses in library cache during parse: 1
 Optimizer mode: ALL_ROWS
@@ -120,24 +120,24 @@ Number of plan statistics captured: 1
 
 Rows (1st) Rows (avg) Rows (max)  Row Source Operation
 ---------- ---------- ----------  ---------------------------------------------------
-    240000     240000     240000  NESTED LOOPS  (cr=468914 pr=0 pw=0 time=2373844 us)
-    240000     240000     240000   NESTED LOOPS  (cr=229310 pr=0 pw=0 time=1599677 us cost=17 size=46302250 card=260125)
-     80000      80000      80000    NESTED LOOPS  (cr=116027 pr=0 pw=0 time=426374 us cost=16 size=11366783 card=100591)
-     10000      10000      10000     TABLE ACCESS FULL CLIENTE (cr=9518 pr=0 pw=0 time=56407 us cost=16 size=780000 card=10000)
-     80000      80000      80000     TABLE ACCESS BY INDEX ROWID FACTURA (cr=106509 pr=0 pw=0 time=264390 us cost=0 size=350 card=10)
-     80000      80000      80000      INDEX RANGE SCAN FACCEDIDX (cr=27494 pr=0 pw=0 time=125136 us cost=0 size=0 card=10)(object id 26827)
-    240000     240000     240000    INDEX RANGE SCAN DETFACIDX (cr=113283 pr=0 pw=0 time=555690 us cost=0 size=0 card=4)(object id 26828)
-    240000     240000     240000   TABLE ACCESS BY INDEX ROWID DETALLE (cr=239604 pr=0 pw=0 time=561583 us cost=0 size=195 card=3)
+     50000      50000      50000  NESTED LOOPS  (cr=80833 pr=215 pw=0 time=504923 us)
+     50000      50000      50000   NESTED LOOPS  (cr=31430 pr=164 pw=0 time=287583 us cost=3 size=7517652 card=42234)
+     10000      10000      10000    NESTED LOOPS  (cr=14508 pr=34 pw=0 time=44812 us cost=3 size=1130000 card=10000)
+      1000       1000       1000     TABLE ACCESS FULL CLIENTE (cr=1000 pr=0 pw=0 time=6394 us cost=3 size=78000 card=1000)
+     10000      10000      10000     TABLE ACCESS BY INDEX ROWID FACTURA (cr=13508 pr=34 pw=0 time=30808 us cost=0 size=350 card=10)
+     10000      10000      10000      INDEX RANGE SCAN FACCEDIDX (cr=4579 pr=34 pw=0 time=20237 us cost=0 size=0 card=10)(object id 26844)
+     50000      50000      50000    INDEX RANGE SCAN DETFACIDX (cr=16922 pr=130 pw=0 time=123763 us cost=0 size=0 card=5)(object id 26845)
+     50000      50000      50000   TABLE ACCESS BY INDEX ROWID DETALLE (cr=49403 pr=51 pw=0 time=128683 us cost=0 size=260 card=4)
 
 ********************************************************************************
-Trace file: xe_ora_17152.trc
+Trace file: C:\oraclexe\app\oracle\diag\rdbms\xe\xe\trace\xe_ora_13000.trc
 Trace file compatibility: 11.1.0.7
 Sort options: default
 
       10  sessions in tracefile.
-     517  user  SQL statements in trace file.
-    5099  internal SQL statements in trace file.
-    1266  SQL statements in trace file.
-     240  unique SQL statements in trace file.
-  766010  lines in trace file.
-    6888  elapsed seconds in trace file.
+     553  user  SQL statements in trace file.
+    5337  internal SQL statements in trace file.
+    1370  SQL statements in trace file.
+     237  unique SQL statements in trace file.
+  175419  lines in trace file.
+    1127  elapsed seconds in trace file.

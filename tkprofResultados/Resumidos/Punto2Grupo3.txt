@@ -1,0 +1,72 @@
+
+TKPROF: Release 11.2.0.2.0 - Development on Dom Sep 5 17:55:04 2021
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+
+Trace file: C:\oraclexe\app\oracle\diag\rdbms\xe\xe\trace\xe_ora_20224.trc
+Sort options: default
+
+********************************************************************************
+count    = number of times OCI procedure was executed
+cpu      = cpu time in seconds executing 
+elapsed  = elapsed time in seconds executing
+disk     = number of physical reads of buffers from disk
+query    = number of buffers gotten for consistent read
+current  = number of buffers gotten in current mode (usually for update)
+rows     = number of rows processed by the fetch or execute call
+********************************************************************************
+
+SELECT m*n/p*q AS res
+FROM numero
+
+call     count       cpu    elapsed       disk      query    current        rows
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+Parse        1      0.03       0.00          3          3          0           0
+Execute      1      0.00       0.00          0          0          0           0
+Fetch    33335      0.57       0.89       1718      35203          0      500000
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+total    33337      0.60       0.90       1721      35206          0      500000
+
+Misses in library cache during parse: 1
+Optimizer mode: ALL_ROWS
+Parsing user id: 48  
+Number of plan statistics captured: 1
+
+Rows (1st) Rows (avg) Rows (max)  Row Source Operation
+---------- ---------- ----------  ---------------------------------------------------
+    500000     500000     500000  TABLE ACCESS FULL NUMERO (cr=35203 pr=1718 pw=0 time=417754 us cost=545 size=24786372 card=476661)
+
+********************************************************************************
+
+SELECT LN(m)*LN(n)/LN(p)*LN(q) AS res
+FROM numero
+
+call     count       cpu    elapsed       disk      query    current        rows
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+Parse        1      0.00       0.00          0          0          0           0
+Execute      1      0.00       0.00          0          0          0           0
+Fetch    33335     27.12      27.78       1995      35202          0      500000
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+total    33337     27.12      27.79       1995      35202          0      500000
+
+Misses in library cache during parse: 1
+Optimizer mode: ALL_ROWS
+Parsing user id: 48  
+Number of plan statistics captured: 1
+
+Rows (1st) Rows (avg) Rows (max)  Row Source Operation
+---------- ---------- ----------  ---------------------------------------------------
+    500000     500000     500000  TABLE ACCESS FULL NUMERO (cr=35202 pr=1995 pw=0 time=2995831 us cost=545 size=12000000 card=500000)
+
+********************************************************************************
+Trace file: C:\oraclexe\app\oracle\diag\rdbms\xe\xe\trace\xe_ora_20224.trc
+Trace file compatibility: 11.1.0.7
+Sort options: default
+
+       6  sessions in tracefile.
+     137  user  SQL statements in trace file.
+    1623  internal SQL statements in trace file.
+     491  SQL statements in trace file.
+      89  unique SQL statements in trace file.
+   79097  lines in trace file.
+    3939  elapsed seconds in trace file.

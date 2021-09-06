@@ -1,0 +1,140 @@
+
+TKPROF: Release 11.2.0.2.0 - Development on Dom Sep 5 14:57:03 2021
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+
+Trace file: C:\oraclexe\app\oracle\diag\rdbms\xe\xe\trace\xe_ora_6712.trc
+Sort options: default
+
+********************************************************************************
+count    = number of times OCI procedure was executed
+cpu      = cpu time in seconds executing 
+elapsed  = elapsed time in seconds executing
+disk     = number of physical reads of buffers from disk
+query    = number of buffers gotten for consistent read
+current  = number of buffers gotten in current mode (usually for update)
+rows     = number of rows processed by the fetch or execute call
+********************************************************************************
+
+SELECT *
+FROM cliente c, factura f, detalle d
+WHERE c.cedula = f.cecliente AND f.codigof = d.codfact
+
+call     count       cpu    elapsed       disk      query    current        rows
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+Parse        1      0.00       0.01          9          9          0           0
+Execute      1      0.00       0.00          0          0          0           0
+Fetch    32001      1.84       1.93        960      34187          0      480000
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+total    32003      1.84       1.94        969      34196          0      480000
+
+Misses in library cache during parse: 1
+Optimizer mode: ALL_ROWS
+Parsing user id: 48  
+Number of plan statistics captured: 1
+
+Rows (1st) Rows (avg) Rows (max)  Row Source Operation
+---------- ---------- ----------  ---------------------------------------------------
+    480000     480000     480000  HASH JOIN  (cr=34187 pr=960 pw=0 time=1290227 us cost=3368 size=88132250 card=495125)
+    100000     100000     100000   HASH JOIN  (cr=393 pr=65 pw=0 time=47370 us cost=412 size=12009527 card=106279)
+     15000      15000      15000    TABLE ACCESS FULL CLIENTE (cr=79 pr=0 pw=0 time=1036 us cost=22 size=1186224 card=15208)
+    100000     100000     100000    TABLE ACCESS FULL FACTURA (cr=314 pr=65 pw=0 time=7169 us cost=87 size=3719660 card=106276)
+    480000     480000     480000   TABLE ACCESS FULL DETALLE (cr=33794 pr=895 pw=0 time=664343 us cost=522 size=32181890 card=495106)
+********************************************************************************
+
+SELECT /*+ FULL(c) FULL(f) FULL(d)  */ *
+FROM cliente c, factura f, detalle d
+WHERE c.cedula = f.cecliente AND f.codigof = d.codfact
+
+call     count       cpu    elapsed       disk      query    current        rows
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+Parse        1      0.01       0.00          0          0          0           0
+Execute      1      0.00       0.00          0          0          0           0
+Fetch    32001      2.10       2.49       2295      34184          0      480000
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+total    32003      2.12       2.50       2295      34184          0      480000
+
+Misses in library cache during parse: 1
+Optimizer mode: ALL_ROWS
+Parsing user id: 48  
+Number of plan statistics captured: 1
+
+Rows (1st) Rows (avg) Rows (max)  Row Source Operation
+---------- ---------- ----------  ---------------------------------------------------
+    480000     480000     480000  HASH JOIN  (cr=34184 pr=2295 pw=0 time=2023254 us cost=1591 size=34560000 card=480000)
+     15000      15000      15000   TABLE ACCESS FULL CLIENTE (cr=78 pr=77 pw=0 time=1682 us cost=22 size=465000 card=15000)
+    480000     480000     480000   HASH JOIN  (cr=34106 pr=2218 pw=0 time=1499468 us cost=1567 size=19680000 card=480000)
+    100000     100000     100000    TABLE ACCESS FULL FACTURA (cr=313 pr=311 pw=0 time=6616 us cost=87 size=1700000 card=100000)
+    480000     480000     480000    TABLE ACCESS FULL DETALLE (cr=33793 pr=1907 pw=0 time=917992 us cost=521 size=11520000 card=480000)
+********************************************************************************
+
+SELECT /*+ USE_MERGE(c f) USE_MERGE(d)  */ *
+FROM cliente c, factura f, detalle d
+WHERE c.cedula = f.cecliente AND f.codigof = d.codfact
+
+call     count       cpu    elapsed       disk      query    current        rows
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+Parse        1      0.00       0.00          0          0          0           0
+Execute      1      0.00       0.00          0          0          0           0
+Fetch    32001      1.62       1.85       2322       2327          0      480000
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+total    32003      1.62       1.86       2322       2327          0      480000
+
+Misses in library cache during parse: 1
+Optimizer mode: ALL_ROWS
+Parsing user id: 48  
+Number of plan statistics captured: 1
+
+Rows (1st) Rows (avg) Rows (max)  Row Source Operation
+---------- ---------- ----------  ---------------------------------------------------
+    480000     480000     480000  MERGE JOIN  (cr=2327 pr=2322 pw=0 time=1397094 us cost=5830 size=34560000 card=480000)
+    100000     100000     100000   SORT JOIN (cr=417 pr=415 pw=0 time=249863 us cost=1940 size=4800000 card=100000)
+    100000     100000     100000    MERGE JOIN  (cr=417 pr=415 pw=0 time=87587 us cost=744 size=4800000 card=100000)
+     15000      15000      15000     TABLE ACCESS BY INDEX ROWID CLIENTE (cr=104 pr=104 pw=0 time=21156 us cost=104 size=465000 card=15000)
+     15000      15000      15000      INDEX FULL SCAN SYS_C007952 (cr=28 pr=28 pw=0 time=2816 us cost=28 size=0 card=15000)(object id 26861)
+    100000     100000     100000     SORT JOIN (cr=313 pr=311 pw=0 time=58567 us cost=640 size=1700000 card=100000)
+    100000     100000     100000      TABLE ACCESS FULL FACTURA (cr=313 pr=311 pw=0 time=8233 us cost=87 size=1700000 card=100000)
+    480000     480000     480000   SORT JOIN (cr=1910 pr=1907 pw=0 time=676143 us cost=3890 size=11520000 card=480000)
+    480000     480000     480000    TABLE ACCESS FULL DETALLE (cr=1910 pr=1907 pw=0 time=41572 us cost=521 size=11520000 card=480000)
+********************************************************************************
+
+SELECT *
+FROM cliente c, factura f, detalle d
+WHERE c.cedula = f.cecliente AND f.codigof = d.codfact
+
+call     count       cpu    elapsed       disk      query    current        rows
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+Parse        1      0.00       0.01         11         11          0           0
+Execute      1      0.00       0.00          0          0          0           0
+Fetch    32001      4.37       5.50       3216     908382          0      480000
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+total    32003      4.37       5.51       3227     908393          0      480000
+
+Misses in library cache during parse: 1
+Optimizer mode: ALL_ROWS
+Parsing user id: 48  
+Number of plan statistics captured: 1
+
+Rows (1st) Rows (avg) Rows (max)  Row Source Operation
+---------- ---------- ----------  ---------------------------------------------------
+    480000     480000     480000  NESTED LOOPS  (cr=908382 pr=3216 pw=0 time=4413095 us)
+    480000     480000     480000   NESTED LOOPS  (cr=428956 pr=1658 pw=0 time=2727214 us cost=23 size=88186718 card=495431)
+    100000     100000     100000    NESTED LOOPS  (cr=162383 pr=324 pw=0 time=531572 us cost=22 size=12006928 card=106256)
+     15000      15000      15000     TABLE ACCESS FULL CLIENTE (cr=14582 pr=0 pw=0 time=97254 us cost=22 size=1186380 card=15210)
+    100000     100000     100000     TABLE ACCESS BY INDEX ROWID FACTURA (cr=147801 pr=324 pw=0 time=335224 us cost=0 size=245 card=7)
+    100000     100000     100000      INDEX RANGE SCAN FACCEDIDX (cr=48553 pr=259 pw=0 time=183697 us cost=0 size=0 card=8)(object id 26875)
+    480000     480000     480000    INDEX RANGE SCAN DETFACIDX (cr=266573 pr=1334 pw=0 time=1259163 us cost=0 size=0 card=6)(object id 26876)
+    480000     480000     480000   TABLE ACCESS BY INDEX ROWID DETALLE (cr=479426 pr=1558 pw=0 time=1349074 us cost=0 size=325 card=5)
+
+********************************************************************************
+Trace file: C:\oraclexe\app\oracle\diag\rdbms\xe\xe\trace\xe_ora_6712.trc
+Trace file compatibility: 11.1.0.7
+Sort options: default
+
+      10  sessions in tracefile.
+     479  user  SQL statements in trace file.
+    4971  internal SQL statements in trace file.
+    1272  SQL statements in trace file.
+     244  unique SQL statements in trace file.
+ 1363547  lines in trace file.
+    8676  elapsed seconds in trace file.
